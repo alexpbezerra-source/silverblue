@@ -39,25 +39,12 @@ modules:
 
   - type: dnf  
     
-    remove:
-      packages:
-        - libavdevice-free
-        - libavcodec-free
-        - libavfilter-free
-        - libavformat-free
-        - libavutil-free
-        - libpostproc-free
-        - libswresample-free
-        - libswscale-free
-        - ffmpeg-free
-    
     install:
       packages:
         - steam
         - google-chrome-stable
         - distrobox
         - gnome-tweaks
-        - libavcodec-freeworld
         - ffmpe
         - btop
   
