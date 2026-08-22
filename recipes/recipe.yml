@@ -40,6 +40,7 @@ modules:
   - type: dnf  
     
     remove:
+      packages:
         - libavdevice-free
         - libavcodec-free
         - libavfilter-free
