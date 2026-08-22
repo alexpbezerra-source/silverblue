@@ -17,7 +17,6 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  modules:
   - type: script
     snippets:
       # 1. Ensure /var/opt or appropriate directory symlinks exist to prevent cpio errors
@@ -27,8 +26,7 @@ modules:
       # 3. Import Google's GPG keys explicitly to prevent build/update verification failures
       - rpm --import https://dl.google.com/linux/linux_signing_key.pub
  
-  - type: dnf
-    
+  - type: dnf  
     install:
       packages:
         - steam
