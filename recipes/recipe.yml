@@ -57,7 +57,7 @@ modules:
         - google-chrome-stable
         - distrobox
         - gnome-tweaks
-        - ffmpe
+        - ffmpeg
         - btop
   
   
