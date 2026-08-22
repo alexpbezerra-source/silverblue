@@ -21,7 +21,7 @@ modules:
     snippets:
         # 2. Explicitly enable the Google Chrome repository
         # (Fedora Atomic desktops like Silverblue have this pre-configured but disabled)
-        dnf config-manager --enabled google-chrome
+        dnf config-manager --enable google-chrome
  
   - type: dnf
     
