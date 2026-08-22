@@ -16,6 +16,9 @@ modules:
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+  - type: bling
+    customizations:
+      - rpmfusion # Installs RPM Fusion free, nonfree, and tainted repositories
 
   - type: script
     snippets:
@@ -41,6 +44,8 @@ modules:
         - google-chrome-stable
         - distrobox
         - gnome-tweaks
+        - libavcodec-freeworld
+        - btop
   
   
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
