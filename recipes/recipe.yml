@@ -19,11 +19,6 @@ modules:
 
   - type: script
     snippets:
-      - |
-        # 1. Download and import Google's GPG signing key
-        curl -fLo /etc/pki/pm-gpg/RPM-GPG-KEY-google-chrome https://dl.google.com/linux/linux_signing_key.pub
-        rpm --import /etc/pki/pm-gpg/RPM-GPG-KEY-google-chrome
-
         # 2. Explicitly enable the Google Chrome repository
         # (Fedora Atomic desktops like Silverblue have this pre-configured but disabled)
         dnf config-manager --set-enabled google-chrome
