@@ -17,11 +17,15 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
+  modules:
   - type: script
     snippets:
-        # 2. Explicitly enable the Google Chrome repository
-        # (Fedora Atomic desktops like Silverblue have this pre-configured but disabled)
-        dnf config-manager --enable google-chrome
+      # 1. Ensure /var/opt or appropriate directory symlinks exist to prevent cpio errors
+      - mkdir -p /var/opt
+      # 2. Enable the built-in Fedora Google Chrome repository
+      - dnf config-manager setopt google-chrome.enabled=1
+      # 3. Import Google's GPG keys explicitly to prevent build/update verification failures
+      - rpm --import https://dl.google.com/linux/linux_signing_key.pub
  
   - type: dnf
     
