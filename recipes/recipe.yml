@@ -59,6 +59,7 @@ modules:
         - gnome-tweaks
         - ffmpeg
         - btop
+        - groupinstall "GNOME"
   
   
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
