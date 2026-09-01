@@ -6,7 +6,7 @@ name: silverblue
 description: This is my personal OS image.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/blue-build/base-images/fedora-silverblue
+base-image: ghcr.io/ublue-os/silverblue-main
 image-version: latest # You can pin to a specific version of Fedora as well
 
 # module configuration, executed in order
@@ -20,7 +20,23 @@ modules:
     install:
       - rpmfusion # Installs RPM Fusion free, nonfree, and tainted repositories
 
-  
+  - type: script
+    snippets:
+      # 1. Ensure /var/opt or appropriate directory symlinks exist to prevent cpio errors
+      - mkdir -p /var/opt
+   
+      - |
+        cat << 'EOF' > /etc/yum.repos.d/google-chrome.repo
+        [google-chrome]
+        name=google-chrome
+        baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+        skip_if_unavailable=True
+        gpgcheck=1
+        gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+        enabled=1
+        enabled_metadata=1
+        EOF
+
   - type: dnf  
 
     remove:
@@ -34,18 +50,15 @@ modules:
         - libswresample-free
         - libswscale-free
         - ffmpeg-free
-        - firefox
-        - firefox-langpacks
     
     install:
       packages:
         - steam
+        - google-chrome-stable
         - distrobox
         - gnome-tweaks
         - ffmpeg
         - btop
-      
-        
   
   
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
