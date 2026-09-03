@@ -24,7 +24,8 @@ modules:
     snippets:
       # 1. Ensure /var/opt or appropriate directory symlinks exist to prevent cpio errors
       - mkdir -p /var/opt
-   
+      - dnf config-manager addrepo --id=mozilla --set=baseurl=https://packages.mozilla.org/rpm/firefox --set=gpgkey=https://packages.mozilla.org/rpm/firefox/signing-key.gpg --set=gpgcheck=1 --set=repo_gpgcheck=0 --set=priority=10
+      - dnf makecache --refresh
       - |
         cat << 'EOF' > /etc/yum.repos.d/google-chrome.repo
         [google-chrome]
@@ -50,6 +51,8 @@ modules:
         - libswresample-free
         - libswscale-free
         - ffmpeg-free
+        - firefox
+        - firefox-langpacks
     
     install:
       packages:
@@ -59,6 +62,9 @@ modules:
         - gnome-tweaks
         - ffmpeg
         - btop
+        - firefox
+        - firefox-l10n-pt-BR
+        - lm_sensors
   
   
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
